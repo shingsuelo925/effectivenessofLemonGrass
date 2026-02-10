@@ -1,0 +1,10 @@
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Allows your website to read the logs for the dashboard
+    // but prevents anyone from deleting or changing the history
+    match /logs/{logId} {
+      allow read: if true; 
+      allow create, update, delete: if false; 
+    }
+  }
+}
